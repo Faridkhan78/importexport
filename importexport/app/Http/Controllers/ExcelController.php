@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use DB;
+// use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use function Laravel\Prompts\alert;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 
@@ -307,9 +307,8 @@ class ExcelController extends Controller
          //   ->select('datfilter.name', 'datfilter.date', 'datfilter.status', 'datfilter.datfilter_id as id')
 
             ->get();
-            
+         
             //dd($products);
-
         $csvFileName = 'datfilter_with_registers.csv';
 
         $headers = [

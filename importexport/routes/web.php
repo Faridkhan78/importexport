@@ -5,9 +5,9 @@ use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\ProductController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Emport and Import CSV files
 Route::get('/importExportView', [ExcelController::class, 'index'])->name('importExportView');
@@ -44,7 +44,7 @@ Route::get('/fetchalldata-data', [ProductController::class, 'fetchalldata']);
 
 
 // EmportCat and ImportCat CSV files
-Route::get('/indexCatView', [ProductController::class, 'indexCat'])->name('indexCatView');
+Route::get('/', [ProductController::class, 'indexCat'])->name('indexCatView');
 Route::post('/importCat', [ProductController::class, 'importCat'])->name('importCat');
 Route::post('/exportCat', [ProductController::class, 'exportCat'])->name('exportCat');
 

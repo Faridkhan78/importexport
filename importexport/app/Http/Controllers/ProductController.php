@@ -224,7 +224,6 @@ class ProductController extends Controller
             }
 
             try {
-
                 // Check if category exists
             
                 // $category = Category::where('category_name', $data[0])->first();
@@ -284,7 +283,7 @@ class ProductController extends Controller
         //     // return redirect()->back()->withErrors($errors);
         // }
         return redirect()->back()->with('success', 'CSV file imported successfully.');
-    }
+    }      
     public function exportCat()
     {
         // dd(1);
@@ -300,7 +299,9 @@ class ProductController extends Controller
             'Content-Type' => 'text/csv',
             'Content-Disposition' => 'attachment; filename="' . $csvFileName . '"',
         ];
+
         $handle = fopen('php://output', 'w');
+        // fputcsv($handle, ['category_name', 'product_name','sku_varient','sku_price']); // Add headers as needed
         fputcsv($handle, ['category_name', 'product_name', 'sku_varient', 'sku_price']); // Add more headers as needed
 
         // foreach ($categorys as $category) {
@@ -319,6 +320,7 @@ class ProductController extends Controller
             ->join('category', 'product.category_id', '=', 'category.category_id')
             ->select('category.category_name', 'product.product_name', 'package.sku_varient', 'package.sku_price')
             ->get();
+            // dd($data);
 
         // Loop through data and write to CSV
         foreach ($data as $row) {
